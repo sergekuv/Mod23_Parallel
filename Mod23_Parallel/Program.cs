@@ -1,5 +1,4 @@
-﻿using Mod23_Parallel;
-using static Mod23_Parallel.SpaceCounter;
+﻿using static Mod23_Parallel.SpaceCounter;
 
 namespace Mod23_Parallel;
 
@@ -21,31 +20,22 @@ internal class Program
             }
 
             Console.WriteLine("== Serial processing ==");
-
-            Console.WriteLine("-> Linq\n");
+            Console.WriteLine("-> Linq");
             SpaceCounter.SerialCountSpaces(parameters, LinqCount);
-            //Console.WriteLine("-- finished --\n");
-
-            Console.WriteLine("-> ForEachCount\n");
+            Console.WriteLine("-> ForEachCount");
             SpaceCounter.SerialCountSpaces(parameters, ForEachCount);
 
-            Console.WriteLine("\n== foreach with Task.WaitAll creation ==");
-
-            Console.WriteLine("-> Linq\n");
-            SpaceCounter.ParallelCountSpaces(parameters, LinqCount);
-
-            Console.WriteLine("-> ForEachCount\n");
-            SpaceCounter.ParallelCountSpaces(parameters, ForEachCount);
+            Console.WriteLine("\n== Serial foreach with Task.WaitAll creation ==");
+            Console.WriteLine("-> Linq");
+            SpaceCounter.TaskCountSpaces(parameters, LinqCount);
+            Console.WriteLine("-> ForEachCount");
+            SpaceCounter.TaskCountSpaces(parameters, ForEachCount);
 
             Console.WriteLine("\n== Parallel.ForEach processing ==");
-
-            Console.WriteLine("-> Linq\n");
+            Console.WriteLine("-> Linq");
             SpaceCounter.ParallelForCountSpaces(parameters, LinqCount);
-
-            Console.WriteLine("-> ForEachCount\n");
+            Console.WriteLine("-> ForEachCount");
             SpaceCounter.ParallelForCountSpaces(parameters, ForEachCount);
-
-
         }
         catch (Exception ex)
         {
@@ -53,9 +43,5 @@ internal class Program
             Console.ReadLine();
             return;
         }
-
-
-
-
     }
 }

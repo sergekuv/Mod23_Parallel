@@ -18,14 +18,14 @@ public class Params
         Directory.CreateDirectory(folderPath);
 
         // До экспериментов с этим параметром я пока не добрался..
-        string logProc = askForUserInput ? GetUserInput("Enter number of logical processors.", config?["LogicalProcessors"]) : config?["LogicalProcessors"];
-        bool logProcIsInteger = int.TryParse(logProc, out LogicalProcessors);
-        if (!logProcIsInteger || (LogicalProcessors is <= 0 or > 50))
-        {
-            throw new Exception("Number of logical processors should be between 1 and 50");
-        }
+        //string logProc = askForUserInput ? GetUserInput("Enter number of logical processors.", config?["LogicalProcessors"]) : config?["LogicalProcessors"];
+        //bool logProcIsInteger = int.TryParse(logProc, out LogicalProcessors);
+        //if (!logProcIsInteger || (LogicalProcessors is <= 0 or > 50))
+        //{
+        //    throw new Exception("Number of logical processors should be between 1 and 50");
+        //}
 
-        string filesToCreate = askForUserInput ? GetUserInput("Enter quantity of FIles to create in the directory.", config?["FilesToCreate"]) : config?["FilesToCreate"];
+        string filesToCreate = askForUserInput ? GetUserInput("Enter min quantity of Files the directory should contain.", config?["FilesToCreate"]) : config?["FilesToCreate"];
         bool quantityIsInteger = int.TryParse(filesToCreate, out FilesToCreate);
         if (!quantityIsInteger || (FilesToCreate is <= 0 or > 50))
         {
@@ -59,5 +59,4 @@ public class Params
             return null;
         }
     }
-
 }

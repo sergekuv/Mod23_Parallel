@@ -6,7 +6,6 @@ internal static class TestFilesGenerator
 {
     internal static void CreateFiles(Params parameters)
     {
-
         Directory.SetCurrentDirectory(parameters.FolderPath.ToString());
         string content = GenerateContent();
         int quantityToCreate = parameters.FilesToCreate - parameters.FolderPath.GetFiles().Length;
@@ -14,7 +13,7 @@ internal static class TestFilesGenerator
         // Интересно, насколько полезен parallel for при записи на диск?
         for (int i = 0; i < quantityToCreate; i++)
         {
-            string fileName = "test_" + i + "_" + DateTime.Now.ToString("yyyy-mm-dd_hh-mm-ss-fff") + ".txt";
+            string fileName = "test_" + i + "_" + DateTime.Now.ToString("_dd_hh-mm-ss-fff") + ".txt";
             File.WriteAllText(fileName, content);
         }
     }

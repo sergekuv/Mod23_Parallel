@@ -2,9 +2,9 @@
 
 namespace Mod23_Parallel;
 
-internal static class SpaceCounter
+public static class SpaceCounter
 {
-    internal static void SerialCountSpaces(Params parameters, Func<string, int> func)
+    public static void SerialCountSpaces(Params parameters, Func<string, int> func)
     {
         FileInfo[] files = parameters.FolderPath.GetFiles();
         List<Task> tasks = new List<Task>();
@@ -17,7 +17,8 @@ internal static class SpaceCounter
         sw.Stop();
         Console.WriteLine("-- finished in {0}\n", sw.ElapsedTicks);
     }
-    internal static void ParallelCountSpaces(Params parameters, Func<string, int> func)
+
+    public static void TaskCountSpaces(Params parameters, Func<string, int> func)
     {
         FileInfo[] files = parameters.FolderPath.GetFiles();
         List<Task> tasks = new List<Task>();
@@ -34,7 +35,7 @@ internal static class SpaceCounter
         Console.WriteLine("-- finished in {0}\n", sw.ElapsedTicks);
     }
 
-    internal static void ParallelForCountSpaces(Params parameters, Func<string, int> func)
+    public static void ParallelForCountSpaces(Params parameters, Func<string, int> func)
     {
         FileInfo[] files = parameters.FolderPath.GetFiles();
         List<Task> tasks = new List<Task>();
