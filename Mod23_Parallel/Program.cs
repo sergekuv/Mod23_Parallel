@@ -25,17 +25,23 @@ internal class Program
             Console.WriteLine("-> ForEachCount");
             SpaceCounter.SerialCountSpaces(parameters, ForEachCount);
 
-            Console.WriteLine("\n== Serial foreach with Task.WaitAll creation ==");
+            Console.WriteLine("\n== Parallel reading and processing: foreach with Task.WaitAll creation ==");
             Console.WriteLine("-> Linq");
             SpaceCounter.TaskCountSpaces(parameters, LinqCount);
             Console.WriteLine("-> ForEachCount");
             SpaceCounter.TaskCountSpaces(parameters, ForEachCount);
 
-            Console.WriteLine("\n== Parallel.ForEach processing ==");
+            Console.WriteLine("\n== Serial reading and Parallel processing: foreach with Task.WaitAll creation ==");
             Console.WriteLine("-> Linq");
-            SpaceCounter.ParallelForCountSpaces(parameters, LinqCount);
+            SpaceCounter.TaskCountSpacesOld(parameters, LinqCount);
             Console.WriteLine("-> ForEachCount");
-            SpaceCounter.ParallelForCountSpaces(parameters, ForEachCount);
+            SpaceCounter.TaskCountSpacesOld(parameters, ForEachCount);
+
+            //Console.WriteLine("\n== Parallel.ForEach processing ==");
+            //Console.WriteLine("-> Linq");
+            //SpaceCounter.ParallelForCountSpaces(parameters, LinqCount);
+            //Console.WriteLine("-> ForEachCount");
+            //SpaceCounter.ParallelForCountSpaces(parameters, ForEachCount);
         }
         catch (Exception ex)
         {

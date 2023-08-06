@@ -25,6 +25,26 @@ public static class SpaceCounter
         Stopwatch sw = Stopwatch.StartNew();
         foreach (FileInfo file in files)
         {
+            Task task = Task.Run(() => 
+            { 
+                string text = File.ReadAllText(file.FullName);
+                Console.WriteLine($"-\t{file.Name} contains {func(text)} spaces");
+            });
+            tasks.Add(task);
+        }
+
+        Task.WaitAll(tasks.ToArray());
+        sw.Stop();
+        Console.WriteLine("-- finished in {0}\n", sw.ElapsedTicks);
+    }
+
+    public static void TaskCountSpacesOld(Params parameters, Func<string, int> func)
+    {
+        FileInfo[] files = parameters.FolderPath.GetFiles();
+        List<Task> tasks = new List<Task>();
+        Stopwatch sw = Stopwatch.StartNew();
+        foreach (FileInfo file in files)
+        {
             string text = File.ReadAllText(file.FullName);
             Task task = Task.Run(() => Console.WriteLine($"\t{file.Name} contains {func(text)} spaces"));
             tasks.Add(task);
